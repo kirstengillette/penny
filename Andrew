@@ -1,0 +1,25 @@
+To create a query to find the popularity of "Andrew" over time
+SELECT
+  name, year
+  SUM(number) AS total
+FROM
+  `bigquery-public-data.usa_names.usa_1910_2013`
+  where name = "Andrew"
+  GROUP BY
+  name, year
+ORDER BY
+year
+
+
+To create a query for names that sound like Andrew (beginning with And):
+
+SELECT
+  name, year, gender,
+  SUM(number) AS total
+FROM
+  `bigquery-public-data.usa_names.usa_1910_2013`
+  where gender = "M" AND name LIKE 'And%' AND year BETWEEN 1987 AND 1997
+  GROUP BY
+  name, year, gender
+ORDER BY
+year
